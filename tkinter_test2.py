@@ -14,41 +14,43 @@ class Aplication(tk.Frame):
 
         #結果表示部分
         Text_sp = tk.Label(self,text="結果",font = (20))
-        Text_sp.pack()
         self.Text = tk.StringVar()
         self.Text.set ("-")
         self.label = tk.Label(self,textvariable = self.Text,font = ("Times",30,'bold'))
-        self.label.pack()
 
         #抽選ボタン
         start_btn = tk.Button(self, text="抽選開始",command=self.button_click)#command=~でdef~に飛ぶ
-        start_btn.pack()
 
         #履歴部分
         rireki_sp = tk.Label(self,text="履歴")
-        rireki_sp.pack()
         self.Text2 = tk.StringVar()
         self.Text2.set("-")
         rireki1 = tk.Message(self,aspect=300,textvariable = self.Text2,width=200,)
-        rireki1.pack()
 
         #回数カウント
         ct_sp = tk.Label(self,text="現在の抽選回数")
-        ct_sp.pack()
         self.count_Text = tk.StringVar()
         self.count_Text.set(0)
         count = tk.Label(self,textvariable = self.count_Text)
-        count.pack()
 
         #リセットボタン
         reset_btn = tk.Button(self, text="リセット",command =self.reset_click)#command=~でdef~に飛ぶ
-        reset_btn.pack()
 
 
         #閉じるボタン
         quit_btn = tk.Button(self)
         quit_btn['text'] ='終了'
         quit_btn['command'] = self.root.destroy
+
+        #Widgetの配置
+        Text_sp.pack()
+        self.label.pack()
+        start_btn.pack()
+        rireki_sp.pack()
+        rireki1.pack()
+        ct_sp.pack()
+        count.pack()
+        reset_btn.pack()
         quit_btn.pack(side = 'bottom')
 
     def button_click(self):
