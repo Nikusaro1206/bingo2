@@ -2,6 +2,7 @@ import tkinter as tk
 import tkinter.messagebox as tkmg
 import random
 
+#margeテスト
 class Aplication(tk.Frame):
     def __init__(self,root=None):
         super().__init__(root,width=380,height=480,
@@ -26,7 +27,7 @@ class Aplication(tk.Frame):
         self.rireki_sp = tk.LabelFrame(self,text="履歴",padx=10,pady=10)
         self.Text2 = tk.StringVar()
         self.Text2.set("-")
-        rireki1 = tk.Message(self.rireki_sp,textvariable = self.Text2,width=250,anchor="nw")
+        rireki1 = tk.Message(self.rireki_sp,textvariable = self.Text2,width=270,anchor="nw")
 
         #回数カウント
         ct_sp = tk.Label(self,text="現在の抽選回数")
