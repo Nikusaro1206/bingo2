@@ -4,7 +4,7 @@ import random
 
 class Aplication(tk.Frame):
     def __init__(self,root=None):
-        super().__init__(root,width=380,height=480,
+        super().__init__(root,width=380,height=400,
                          borderwidth=4,relief='groove')
         self.root = root
         self.pack()
@@ -26,7 +26,7 @@ class Aplication(tk.Frame):
         self.rireki_sp = tk.LabelFrame(self,text="履歴",padx=10,pady=10)
         self.Text2 = tk.StringVar()
         self.Text2.set("-")
-        rireki1 = tk.Message(self.rireki_sp,textvariable = self.Text2,width=100,anchor="nw")
+        rireki1 = tk.Message(self.rireki_sp,textvariable = self.Text2,width=250,anchor="nw")
 
         #回数カウント
         ct_sp = tk.Label(self,text="現在の抽選回数")
@@ -44,15 +44,15 @@ class Aplication(tk.Frame):
         quit_btn['command'] = self.root.destroy
 
         #Widgetの配置
-        Text_sp.grid(row=0,column=1)
-        label.grid(row=1,column=1)
-        start_btn.grid(row=4,column=1)
-        self.rireki_sp.grid(row=5,column=0,columnspan=3,rowspan=2)
+        Text_sp.place(relx=0.5,y=20,anchor=tk.CENTER)
+        label.place(relx = 0.5,y = 70,anchor=tk.CENTER)
+        start_btn.place(relx=0.5,y=120,anchor=tk.CENTER)
+        self.rireki_sp.place(relx=0.5,relwidth=0.8,y=220,height=150,anchor=tk.CENTER)
         rireki1.grid(in_=self.rireki_sp,row=0,column=0)
-        ct_sp.grid(row=10,column=0,columnspan=3)
-        count.grid(row=11,column=1)
-        reset_btn.grid(row=13,column=0)
-        quit_btn.grid(row=13,column=2)
+        ct_sp.place(relx = 0.5,y=320,anchor=tk.CENTER)
+        count.place(relx=0.5,y=340,anchor=tk.CENTER)
+        reset_btn.place(relx=0.2,y=370,anchor=tk.CENTER)
+        quit_btn.place(relx=0.8,y=370,anchor=tk.CENTER)
 
     def button_click(self):
         kazu = len(hyouzi)
@@ -95,6 +95,6 @@ root = tk.Tk()
 hyouzi = []#空のリスト
 #hyouzi.clear()
 root.title("bingo!!")#title
-root.geometry("400x500")
+#root.geometry("400x500")
 app = Aplication(root=root)
 app.mainloop()
