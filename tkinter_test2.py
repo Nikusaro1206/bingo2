@@ -4,7 +4,7 @@ import random
 
 class Aplication(tk.Frame):
     def __init__(self,root=None):
-        super().__init__(root,width=380,height=400,
+        super().__init__(root,width=380,height=480,
                          borderwidth=4,relief='groove')
         self.root = root
         self.pack()
@@ -37,6 +37,10 @@ class Aplication(tk.Frame):
         #リセットボタン
         reset_btn = tk.Button(self, text="リセット",command =self.reset_click)#command=~でdef~に飛ぶ
 
+        #検索画面
+        self.sort_sp=tk.LabelFrame(self,text="検索",padx=10,pady=10)
+        self.sort_box=tk.Entry(width=10)
+        sort_button=tk.Button(self,text="検索",command=self.sort_click)
 
         #閉じるボタン
         quit_btn = tk.Button(self)
@@ -51,8 +55,11 @@ class Aplication(tk.Frame):
         rireki1.grid(in_=self.rireki_sp,row=0,column=0)
         ct_sp.place(relx = 0.5,y=320,anchor=tk.CENTER)
         count.place(relx=0.5,y=340,anchor=tk.CENTER)
-        reset_btn.place(relx=0.2,y=370,anchor=tk.CENTER)
-        quit_btn.place(relx=0.8,y=370,anchor=tk.CENTER)
+        self.sort_sp.place(relx=0.5,y=390,anchor=tk.CENTER)
+        self.sort_box.grid(in_=self.sort_sp,row=0,column=0)
+        sort_button.grid(in_=self.sort_sp,row=0,column=1)
+        reset_btn.place(relx=0.2,y=450,anchor=tk.CENTER)
+        quit_btn.place(relx=0.8,y=450,anchor=tk.CENTER)
 
     def button_click(self):
         kazu = len(hyouzi)
@@ -90,6 +97,14 @@ class Aplication(tk.Frame):
         self.Text.set("-")
         self.Text2.set("-")
         self.count_Text.set(kazu)
+
+    def sort_click(self):
+        kennsaku = self.sort_box.get()
+        if int(kennsaku) in hyouzi:
+            text3="抽選済みです"
+        else:
+            text3="抽選されていません"
+        tkmg.showinfo("検索結果",text3)
 
 root = tk.Tk()
 hyouzi = []#空のリスト
