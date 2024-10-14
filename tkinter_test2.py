@@ -3,7 +3,7 @@ import random
 
 class Aplication(tk.Frame):
     def __init__(self,root=None):
-        super().__init__(root,width=380,height=280,
+        super().__init__(root,width=150,height=250,
                          borderwidth=4,relief='groove')
         self.root = root
         self.pack()
@@ -14,18 +14,18 @@ class Aplication(tk.Frame):
 
         #結果表示部分
         Text_sp = tk.Label(self,text="結果",font = (20))
-        self.Text = tk.StringVar()
+        self.Text = tk.StringVar()#別のdefで参照する変数はself.~にする
         self.Text.set ("-")
-        self.label = tk.Label(self,textvariable = self.Text,font = ("Times",30,'bold'))
+        label = tk.Label(self,textvariable = self.Text,font = ("Times",30,'bold'))
 
         #抽選ボタン
         start_btn = tk.Button(self, text="抽選開始",command=self.button_click)#command=~でdef~に飛ぶ
 
         #履歴部分
-        rireki_sp = tk.Label(self,text="履歴")
+        self.rireki_sp = tk.LabelFrame(self,text="履歴",padx=10,pady=10)
         self.Text2 = tk.StringVar()
         self.Text2.set("-")
-        rireki1 = tk.Message(self,aspect=300,textvariable = self.Text2,width=200,)
+        rireki1 = tk.Message(self.rireki_sp,textvariable = self.Text2,width=100,anchor="nw")
 
         #回数カウント
         ct_sp = tk.Label(self,text="現在の抽選回数")
@@ -43,15 +43,15 @@ class Aplication(tk.Frame):
         quit_btn['command'] = self.root.destroy
 
         #Widgetの配置
-        Text_sp.pack()
-        self.label.pack()
-        start_btn.pack()
-        rireki_sp.pack()
-        rireki1.pack()
-        ct_sp.pack()
-        count.pack()
-        reset_btn.pack()
-        quit_btn.pack(side = 'bottom')
+        Text_sp.grid(row=0,column=1)
+        label.grid(row=1,column=1)
+        start_btn.grid(row=4,column=1)
+        self.rireki_sp.grid(row=5,column=0,columnspan=3,rowspan=2)
+        rireki1.grid(in_=self.rireki_sp,row=0,column=0)
+        ct_sp.grid(row=10,column=0,columnspan=3)
+        count.grid(row=11,column=1)
+        reset_btn.grid(row=13,column=0)
+        quit_btn.grid(row=13,column=2)
 
     def button_click(self):
         kazu = len(hyouzi)
@@ -60,12 +60,13 @@ class Aplication(tk.Frame):
         print(kari)
         #重複回避
         while True:
-            if kari in hyouzi:
-                kari=random.randint(1,75)
-            else:
+            if not kari in hyouzi:
                 hyouzi.insert(0,kari)
                 break
+            else:
+                kari=random.randint(1,75)
 
+            
         print(hyouzi)#リスト内確認
         #print(kazu)
         #各表示の更新
@@ -87,7 +88,8 @@ class Aplication(tk.Frame):
 
 root = tk.Tk()
 hyouzi = []#空のリスト
+#hyouzi.clear()
 root.title("bingo!!")#title
-root.geometry("400x300")
+root.geometry("400x500")
 app = Aplication(root=root)
 app.mainloop()
