@@ -1,9 +1,10 @@
 import tkinter as tk
+import tkinter.messagebox as tkmg
 import random
 
 class Aplication(tk.Frame):
     def __init__(self,root=None):
-        super().__init__(root,width=150,height=250,
+        super().__init__(root,width=380,height=480,
                          borderwidth=4,relief='groove')
         self.root = root
         self.pack()
@@ -64,9 +65,13 @@ class Aplication(tk.Frame):
                 hyouzi.insert(0,kari)
                 break
             else:
-                kari=random.randint(1,75)
+                #75個以上のときの実装
+                if kazu < 75: 
+                    kari=random.randint(1,75)
+                else:
+                    tkmg.showinfo("テスト","リセットしてください")
+                    break
 
-            
         print(hyouzi)#リスト内確認
         #print(kazu)
         #各表示の更新
@@ -79,9 +84,9 @@ class Aplication(tk.Frame):
 
     def reset_click(self):
         hyouzi.clear()
-        print(hyouzi)
+        #print(hyouzi)
         kazu = len(hyouzi)
-        print(kazu)
+        #print(kazu)
         self.Text.set("-")
         self.Text2.set("-")
         self.count_Text.set(kazu)
