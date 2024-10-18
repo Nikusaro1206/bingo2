@@ -43,7 +43,7 @@ class Aplication(tk.Frame):
         self.sort_box=tk.Entry(width=10)
         sort_button=tk.Button(self,text="検索",command=self.sort_click)
 
-        #検索ボタンenter_key実装
+        #検索ボタンエンターキー実装
         self.sort_box.bind("<Return>",self.sort_enter)
 
         #閉じるボタン
@@ -102,7 +102,7 @@ class Aplication(tk.Frame):
         self.Text2.set("-")
         self.count_Text.set(kazu)
 
-    def sort_click(self,event):
+    def sort_click(self):
         kennsaku = self.sort_box.get()
         if int(kennsaku) in hyouzi:
             text3="抽選済みです"
@@ -111,12 +111,7 @@ class Aplication(tk.Frame):
         tkmg.showinfo("検索結果",text3)
     
     def sort_enter(self,event):
-        kennsaku = self.sort_box.get()
-        if int(kennsaku) in hyouzi:
-            text3="抽選済みです"
-        else:
-            text3="抽選されていません"
-        tkmg.showinfo("検索結果",text3)
+        self.sort_click()
 
 root = tk.Tk()
 hyouzi = []#空のリスト
