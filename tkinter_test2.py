@@ -79,16 +79,16 @@ class Aplication(tk.Frame):
                 else:
                     tkmg.showinfo("テスト","リセットしてください")
                     break
-
+        kazu = len(hyouzi)
         print(hyouzi)#リスト内確認
         #print(kazu)
         #各表示の更新
         self.Text.set(hyouzi[0])
-        if kazu >= 1:
-            self.Text2.set(hyouzi[1:kazu+1])
+        if kazu > 1:
+            self.Text2.set(hyouzi[1:kazu])
         else:
             pass
-        self.count_Text.set(kazu+1)
+        self.count_Text.set(kazu)
 
     def reset_click(self):
         hyouzi.clear()
