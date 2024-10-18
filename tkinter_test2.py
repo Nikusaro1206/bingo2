@@ -66,7 +66,7 @@ class Aplication(tk.Frame):
         kazu = len(hyouzi)
         #乱数生成
         kari=random.randint(1,75)
-        print(kari)
+        #print(kari)
         #重複回避
         while True:
             if not kari in hyouzi:
@@ -80,7 +80,7 @@ class Aplication(tk.Frame):
                     tkmg.showinfo("テスト","リセットしてください")
                     break
         kazu = len(hyouzi)
-        print(hyouzi)#リスト内確認
+        #print(hyouzi)#リスト内確認
         #print(kazu)
         #各表示の更新
         self.Text.set(hyouzi[0])
